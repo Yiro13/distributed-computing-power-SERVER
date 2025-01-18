@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package tokenManager.sendToken;
+
+message SendToken {
+    string token = 1;
+}
+
+message VerifyTokenResponse {
+    optional string user = 1;
+    bool success = 2;
+}
+
+service VerifyTokenService {
+    rpc verifyToken (SendToken) returns (VerifyTokenResponse);
+}
