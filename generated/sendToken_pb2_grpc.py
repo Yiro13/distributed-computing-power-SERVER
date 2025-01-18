@@ -4,7 +4,7 @@
 import grpc
 import warnings
 
-import sendToken_pb2 as sendToken__pb2
+from generated import sendToken_pb2 as sendToken__pb2
 
 GRPC_GENERATED_VERSION = "1.69.0"
 GRPC_VERSION = grpc.__version__

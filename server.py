@@ -1,12 +1,14 @@
 import grpc
 from concurrent import futures
-import sendToken_pb2
-import sendToken_pb2_grpc
+from generated import sendToken_pb2
+from generated import sendToken_pb2_grpc
 
 
 class VerifyTokenService(sendToken_pb2_grpc.VerifyTokenServiceServicer):
     def verifyToken(self, request, context):
-        # Simple verification example
+        """
+        Simple verification example - needed db validation token
+        """
         if request.token == "my_test_token":
             return sendToken_pb2.VerifyTokenResponse(user="Edgardo", success=True)
         return sendToken_pb2.VerifyTokenResponse(success=False)
