@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Andromeda\Downloads\agenda-tutores-FRONT-main\agenda-tutores-FRONT-main\tutoapp\distributed-computing-power-SERVER\venv
+set VIRTUAL_ENV=C:\Users\Yiro\Documents\neuroGridServer\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

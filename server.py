@@ -8,7 +8,7 @@ class VerifyTokenService(sendToken_pb2_grpc.VerifyTokenServiceServicer):
     def verifyToken(self, request, context):
         # Simple verification example
         if request.token == "my_test_token":
-            return sendToken_pb2.VerifyTokenResponse(user="User123", success=True)
+            return sendToken_pb2.VerifyTokenResponse(user="Edgardo", success=True)
         return sendToken_pb2.VerifyTokenResponse(success=False)
 
 
