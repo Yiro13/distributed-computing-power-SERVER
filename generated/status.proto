@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package tokenManager.status;
+
+import "google/protobuf/empty.proto";
+
+message SendUser {
+    string user = 1;
+}
+
+service Status {
+    rpc status (SendUser) returns (google.protobuf.Empty);
+}
