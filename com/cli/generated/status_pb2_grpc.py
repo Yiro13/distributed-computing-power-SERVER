@@ -4,7 +4,8 @@
 import grpc
 import warnings
 
-from generated import sendCredentials_pb2 as sendCredentials__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
+from com.cli.generated import status_pb2 as status__pb2
 
 GRPC_GENERATED_VERSION = "1.69.0"
 GRPC_VERSION = grpc.__version__
@@ -22,14 +23,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in sendCredentials_pb2_grpc.py depends on"
+        + f" but the generated code in status_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class VerifyCredentialsServiceStub(object):
+class StatusStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -38,47 +39,47 @@ class VerifyCredentialsServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.verifyCredentials = channel.unary_unary(
-            "/tokenManager.sendCredentials.VerifyCredentialsService/verifyCredentials",
-            request_serializer=sendCredentials__pb2.sendCredentials.SerializeToString,
-            response_deserializer=sendCredentials__pb2.VerifyCredentialsResponse.FromString,
+        self.status = channel.unary_unary(
+            "/tokenManager.status.Status/status",
+            request_serializer=status__pb2.SendUser.SerializeToString,
+            response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             _registered_method=True,
         )
 
 
-class VerifyCredentialsServiceServicer(object):
+class StatusServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def verifyCredentials(self, request, context):
+    def status(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
 
-def add_VerifyCredentialsServiceServicer_to_server(servicer, server):
+def add_StatusServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        "verifyCredentials": grpc.unary_unary_rpc_method_handler(
-            servicer.verifyCredentials,
-            request_deserializer=sendCredentials__pb2.sendCredentials.FromString,
-            response_serializer=sendCredentials__pb2.VerifyCredentialsResponse.SerializeToString,
+        "status": grpc.unary_unary_rpc_method_handler(
+            servicer.status,
+            request_deserializer=status__pb2.SendUser.FromString,
+            response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        "tokenManager.sendCredentials.VerifyCredentialsService", rpc_method_handlers
+        "tokenManager.status.Status", rpc_method_handlers
     )
     server.add_generic_rpc_handlers((generic_handler,))
     server.add_registered_method_handlers(
-        "tokenManager.sendCredentials.VerifyCredentialsService", rpc_method_handlers
+        "tokenManager.status.Status", rpc_method_handlers
     )
 
 
 # This class is part of an EXPERIMENTAL API.
-class VerifyCredentialsService(object):
+class Status(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def verifyCredentials(
+    def status(
         request,
         target,
         options=(),
@@ -93,9 +94,9 @@ class VerifyCredentialsService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            "/tokenManager.sendCredentials.VerifyCredentialsService/verifyCredentials",
-            sendCredentials__pb2.sendCredentials.SerializeToString,
-            sendCredentials__pb2.VerifyCredentialsResponse.FromString,
+            "/tokenManager.status.Status/status",
+            status__pb2.SendUser.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,

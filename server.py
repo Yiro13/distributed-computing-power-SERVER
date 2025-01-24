@@ -1,26 +1,14 @@
 import grpc
 from concurrent import futures
 
-from generated import sendToken_pb2
-from generated import sendToken_pb2_grpc
+from com.cli.generated import sendToken_pb2_grpc
+from com.cli.tokenService import VerifyTokenService
 
-# from generated import status_pb2
-from generated import status_pb2_grpc
+from com.cli.generated import status_pb2_grpc
+from com.cli.statusService import StatusService
 
-
-class VerifyTokenService(sendToken_pb2_grpc.VerifyTokenServiceServicer):
-    def verifyToken(self, request, context):
-        """
-        Simple verification example - needed db validation token
-        """
-        if request.token == "my_test_token":
-            return sendToken_pb2.VerifyTokenResponse(user="Yiro", success=True)
-        return sendToken_pb2.VerifyTokenResponse(success=False)
-
-
-class StatusService(status_pb2_grpc.Status):
-    def verifyStatus(self, request, context):
-        print(request.user)
+from com.cli.generated import sendCredentials_pb2_grpc
+from com.cli.credentialsService import VerifyCredentialsService
 
 
 def serve():
@@ -29,6 +17,9 @@ def serve():
         VerifyTokenService(), server
     )
     status_pb2_grpc.add_StatusServicer_to_server(StatusService(), server)
+    sendCredentials_pb2_grpc.add_VerifyCredentialsServiceServicer_to_server(
+        VerifyCredentialsService(), server
+    )
 
     server.add_insecure_port("[::]:50051")
     print("gRPC server listening on port 50051...")
